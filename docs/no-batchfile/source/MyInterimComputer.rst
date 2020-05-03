@@ -2,9 +2,13 @@
 
    <br />
 
-#########
+###################
+My Interim Computer
+###################
+
+*********
 Rationale
-#########
+*********
 This system will not last for long but it is an essential step towards where I
 want to be. I want to write Python scripts to completely automate the creation
 and maintenance of computer systems. This includes the installation
@@ -43,9 +47,9 @@ is a problem because apps often add new configuration items in new releases. For
 the moment, I will just live with the problem until a general solution can be
 found.
 
-###################
+*******************
 The System Contents
-###################
+*******************
 This system will be built manually. I will use this build as an opportunity to
 completely document what I have done to customize my system as an aid to me in
 determining the best way of automating system management. Three basic types of
@@ -56,7 +60,6 @@ system can be built, they are built and configured in different ways:
   hardware of the computer system. When you get a new computer, you will need to
   construct a bare metal environment for it if you want to do anything unless it
   comes with an operating system pre-installed.
-
 * Virtual Machine |br|
   These are run under the control of special software in bare metal environments
   that allows the simulation of bare metal environments so that operating
@@ -64,7 +67,6 @@ system can be built, they are built and configured in different ways:
   bare metal environments for testing. One of the big advantages of virtual
   machines is that they allow you to play with operating systems without fear of
   impacting the bare metal environment that supports them.
-
 * Container Image |br|
   Containers are a new innovation in operating systems that provide many of the
   advantages of virtual machines with lower machine resource usage. They are
@@ -74,30 +76,27 @@ system can be built, they are built and configured in different ways:
   thus conserving physical machine resources. Containers run container images as
   their operating system software.
 
-***********************
 My System Configuration
-***********************
+=======================
 
-======================
 Hardware Configuration
-======================
-  * Machine   - Dell XPS 8700
-  * Processor - Intel Core I7-4770, 4 cores, 8 threads
-  * Memory    - 16 GB
-  * Disks
-  
-    * Kingston 200 GB SSD drive
-    * Kingston 200 GB SSD drive
-    * Western Digital 1 TB hard drive
+----------------------
+* Machine   - Dell XPS 8700
+* Processor - Intel Core I7-4770, 4 cores, 8 threads
+* Memory    - 16 GB
+* Disks
 
-  * Peripherals
+  * Kingston 200 GB SSD drive
+  * Kingston 200 GB SSD drive
+  * Western Digital 1 TB hard drive
   
-    * Microsoft LiveCam web camera - USB
-    * Logitech keyboard - Wireless USB
-    * Logitech mouse - Wireless USB  The keybord and mouse use independent
-      wireless receivers on USB
-    * RCA Monitor - connected via HDMI - 1920x1080 resolution
-    * Logitech Speakers - USB
-    * Wireless network port
-    * DVD Drive
-    * Cyber Acoustics headphone and microphone - USB
+* Peripherals
+
+  * Microsoft LiveCam web camera - USB
+  * Logitech keyboard - Wireless USB
+  * Logitech mouse - Wireless USB  The keybord and mouse use independent
+    wireless receivers on USB
+  * RCA Monitor - connected via HDMI - 1920x1080 resolution
+  * Wireless network port
+  * DVD Drive
+  * Cyber Acoustics headphone and microphone - USB

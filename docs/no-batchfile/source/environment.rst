@@ -1,3 +1,7 @@
+.. |br| raw:: html
+
+   <br />
+
 ######################################
 Global Village Development Environment
 ######################################
@@ -56,12 +60,12 @@ LiclipseText
 This is a plugin for Eclipse that is a text editing tool that supports many
 formats including:
 
-* RST |br|
+* RST |br| 
   The language used for Sphinx documentation source.
-* HTML |br|
+* HTML |br| 
   The language that defines the content on most websites and that can be
   displayed by most browsers.
-* CSS |br|
+* CSS |br| 
   The language that is used to define the styling rules for an HTML display.
 
 This component can be installed via the
@@ -79,11 +83,11 @@ Sphinx
 ------
 
 This is the tool used for creating documentation in the *Global Village*
-environment. it is based on Python and can be installed from within Pydev via
+environment. it is based on Python and can be installed from within PyDev via
 the following pip command from the
 `Python Package Index site <https://pypi.org/>`_.
 
-`pip <>`_ `install sphinx`.
+`pip <https://pypi.org/project/pip/>`_ `install sphinx`.
 
 Git
 ---
