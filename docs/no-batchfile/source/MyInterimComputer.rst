@@ -1,7 +1,3 @@
-.. |br| raw:: html
-
-   <br />
-
 ###################
 My Interim Computer
 ###################
@@ -100,3 +96,8 @@ Hardware Configuration
   * Wireless network port
   * DVD Drive
   * Cyber Acoustics headphone and microphone - USB
+
+Software Configuration
+----------------------
+
+:ref: `See <software-prerequisites>` for details of the software needed.

@@ -1,8 +1,3 @@
-.. |br| raw:: html
-
-   <br />
-
-
 Welcome to the *Global Village* Infrastructure documentation!
 =============================================================
 
@@ -13,8 +8,9 @@ Welcome to the *Global Village* Infrastructure documentation!
    MyInterimComputer
    environment
    configuration
-
-
+   documentation
+   genidx
+   links
 
 Indices and tables
 ==================

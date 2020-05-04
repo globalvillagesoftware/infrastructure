@@ -1,13 +1,11 @@
-.. |br| raw:: html
-
-   <br />
-
 ######################################
 Global Village Development Environment
 ######################################
 
 This section describes the Global Village software development environment and
 it's components.
+
+.. ref _software-prerequisites:
 
 ***********
 Major Tools
