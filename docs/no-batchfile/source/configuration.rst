@@ -87,13 +87,26 @@ iteratively.
   * It is a great help in developing idea comprehension. |br| 
     Planning what you are going to do is a great help in understandng what is up.
 
-  * It is an excellent communication mechanism.
+  * It is an excellent communication mechanism. |br| 
     Most projects have stakeholders in one form or another. Keeping them
     informed about the plan and showing the progress in implementing the plan
     are valuable ways of communicating with stakeholders.
+
+* Review the document and plan with stakeholders |br| 
+  Keeping the project stakeholders in the loop is essential to successful
+  project achievement.
  
 Requirements
 ------------
+Tradionally, requirements documents are massive tomes that describe what a
+project should achieve, in minute detail. Sadly, they frequently bear little
+resemblance to the delivered application. If you adapt an iterative approach to
+project development, you will product many requirements documents, one for each
+iteration. Or it might be a single document with iteration based chapters.
+Requirements can be the reference that is used when specifying acceptance tests
+that verify that the application does what the stakeholders expect. These should
+be defined, even in the absence of stakeholder. Always keep your potential
+users in mind and treat them as virtual stakeholders.
 
 Design
 ------
@@ -110,6 +123,9 @@ Unit testing
 Functional testing
 ^^^^^^^^^^^^^^^^^^
 
+Acceptance Testing
+^^^^^^^^^^^^^^^^^^
+
 Deployment
 ----------
 
@@ -118,6 +134,15 @@ Computer Operations
 
 Software Maintenance
 ====================
+
+Project Management
+==================
+
+Iteration
+---------
+
+References
+----------
 
 *************************
 Elements of Configuration
@@ -155,6 +180,15 @@ Operator
 
 Stakeholder
 """""""""""
+
+Application
+"""""""""""
+
+Project
+"""""""
+
+Milestone
+"""""""""
 
 Plant
 =====
