@@ -45,6 +45,74 @@ open source software development,
 Software Development
 ====================
 
+Programs start with an idea. Computers get involved when individuals feel that
+computers could help make the idea more accessible and usable. Since
+communication is greatly facilitated by computers, they tend to get involved in
+communication situations.
+
+Roughly, the following steps take place during software development. The nature
+of the steps varies somewhat, depending whether an individual or a group is
+performing the development. The steps are not necessarily performed sequentially
+but the entire process may be used iteratively, in a loop through the steps. It 
+is not necessary to complete one step before starting the next. Many times, it
+works better to loop over the whole process with each step resulting in a small
+increment in functionality and a bigger one in the understanding of the nature
+of the original idea.
+ 
+Conception
+----------
+
+The initial step is getting an idea. Often the idea is a bit fuzzy. It is not
+completely clear what the idea is and what are its' implications. I find the
+following steps are helpful in trying to bring clarity to the idea. You might
+only do one of them or you might do some selection of them, possibly
+iteratively.
+
+* Write down the concept in the form of a concepts document. |br| 
+  This helps you to clarify the idea and gives you something concrete to work
+  with when discussing the idea with other people. I find that the simple
+  process of writing a concepts document helps too make the idea clear in my own
+  mind. Writing the document also helps to recognize that an idea is very big
+  and that it may be better to adopt a phased solution to the implementation of
+  the idea.
+  
+  Never treat a concepts document as being cast in stone. It should be a living
+  document that constantly changes as your understanding of the idea
+  implications improves. Coomunicating changes in this document to stakeholders
+  is obviously important.
+
+* Develop a tentative project implementation plan. |br| 
+  This is important for several reasons:
+
+  * It is a great help in developing idea comprehension. |br| 
+    Planning what you are going to do is a great help in understandng what is up.
+
+  * It is an excellent communication mechanism.
+    Most projects have stakeholders in one form or another. Keeping them
+    informed about the plan and showing the progress in implementing the plan
+    are valuable ways of communicating with stakeholders.
+ 
+Requirements
+------------
+
+Design
+------
+
+Implementation
+--------------
+
+Testing
+-------
+
+Unit testing
+^^^^^^^^^^^^
+
+Functional testing
+^^^^^^^^^^^^^^^^^^
+
+Deployment
+----------
+
 Computer Operations
 ===================
 
@@ -69,6 +137,24 @@ Sites
 
 Individuals
 -----------
+
+Roles
+^^^^^
+
+Team Leader
+"""""""""""
+
+Developer
+"""""""""
+
+Tester
+""""""
+
+Operator
+""""""""
+
+Stakeholder
+"""""""""""
 
 Plant
 =====
