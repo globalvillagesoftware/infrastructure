@@ -118,7 +118,7 @@ iterative approach, there may be many chapters to this document, one for each
 iteration.
 
 This work should be cross-referenced to the concept and requirements documents
-to ensure that the document stays in synchronization with changeing concept and
+to ensure that the document stays in synchronization with changing concept and
 requirements. It also should link to implementation artifacts to ensure that the
 implementation and the design are synchronized.
 
