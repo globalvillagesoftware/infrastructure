@@ -1,6 +1,6 @@
-########################################
-Global Village Documentation Conventions
-########################################
+##########################################
+*Global Village* Documentation Conventions
+##########################################
 
 **************
 Handling Terms

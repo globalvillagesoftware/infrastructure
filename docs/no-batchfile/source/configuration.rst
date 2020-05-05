@@ -14,16 +14,16 @@ development. Any extension of this support to commercial or governmental
 environments will be a distant prospect.
 
 Ultimately, configuration will support the development and use of a variety of
-programs onthe *Global Village* environment. In doing this, generality and the
+programs in the *Global Village* environment. In doing this, generality and the
 possibilities of additional application areas should be kept in mind. At least
 some of the developers will belong to organizations that have in-house needs
-that differ ffrom those of the *Global Village*.
+that differ from those of the *Global Village*.
 
 **********************
 What is configuration?
 **********************
 This is the collection of data that controls the operation of organizations
-through individuals to software programs that need data to determine how they
+through to individuals to software programs that need data to determine how they
 should operate. This data is computer based and should be accessible to all the
 active elements involved in the development, running, and maintenance of
 computer  programs. My thoughts started with computer program configuration but
@@ -130,7 +130,7 @@ implementation proceeds.
 * Configuration data will be stored externally in the form of `JSON`. |br|
   `JSON`_ is a well established format that is widely used and is very
   compatible with the internal storage and processing that is required, since
-  `Python`_ based implementations return translated JSON as a dictionary.  
+  `Python`_ based implementations return translated `JSON` as a dictionary.  
   
 Implementation
 --------------

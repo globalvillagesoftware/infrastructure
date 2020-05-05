@@ -100,4 +100,3 @@ Hardware Configuration
 Software Configuration
 ----------------------
 
-:ref: `See <software-prerequisites>` for details of the software needed.
