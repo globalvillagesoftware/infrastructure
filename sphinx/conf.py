@@ -23,9 +23,9 @@ sys.path.insert(0, os.path.abspath('../../../src'))
 # This is the only manual change that is needed. Change the name of the project
 # appropriately. Possibly, the name of the author.
 #!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-project = 'Global Village Communication'
-copyright = '2020, Jonathan Gossage'
+project = 'Global Village'
 author = 'Jonathan Gossage'
+copyright = f'2020, {author}'
 
 # The full version, including alpha/beta/rc tags
 release = '0.1.0'
