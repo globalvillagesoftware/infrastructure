@@ -2,4 +2,4 @@
 Handle External Links in *Global Village* Documentation
 #######################################################
 
-**TBA**
+**To be added**

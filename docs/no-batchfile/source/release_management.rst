@@ -86,18 +86,28 @@ process.
       not necessary to provide full inter-organization communication in this
       case.
 
-  * Security
-  * Track performance of work product. |br|
+  * Security |br| 
+    If you want to ensure the integrity of your application, you need to be sure
+    that ony the people authorized to do so work on it. So long as you trust the
+    people involved, you can have a reasonable expectation that no undesired
+    capability will be introduced into the application. Two aspects of security
+    are particularly important:
     
-* Provide consistent working environments
-  for geographically dispersed teams. |br| 
+    * Ability to securely identify organization personnel in the development
+      environment. |br| 
+    * Ability to control whar activities are permitted, based on the identity of
+      the orgaanization member. |br| 
+    * Control the configuration of computers used for software development. |br| 
+
+      * Ensure consistency. |br| 
+      * Ensure portability. |br| 
+      * Ensure usability. |br|
+       
+    * Provide consistent working environments
+      for geographically dispersed teams. |br| 
+
 * Provide source code repositories and the
   tools to effectively manage them. |br| 
-* Control the configuration of computers used for software development. |br| 
-
-  * Ensure consistency. |br| 
-  * Ensure portability. |br| 
-  * Ensure usability. |br| 
 
 Cycle
 ^^^^^
