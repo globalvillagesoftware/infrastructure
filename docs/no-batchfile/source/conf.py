@@ -19,7 +19,7 @@ sys.path.insert(0, os.path.abspath('../../../src'))
 
 # -- Project information -----------------------------------------------------
 
-project = 'Global Village Communication'
+project = 'Global Village Environment Concepts'
 author = 'Jonathan Gossage'
 copyright = f'2020, {author}'
 

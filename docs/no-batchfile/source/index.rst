@@ -1,4 +1,4 @@
-Welcome to the *Global Village* Infrastructure documentation!
+Welcome to the *Global Village* Environment concepts document
 =============================================================
 
 This document is a collection of relatively independent essays on various topics
@@ -13,13 +13,13 @@ application offering of the *Global Village*.
    :maxdepth: 2
    :caption: Contents:
    
-   MyInterimComputer
+   my_interim_computer
    environment
    configuration
    documentation
    genidx
    links
-   branches
+   release_management
    version
 
 Indices and tables
