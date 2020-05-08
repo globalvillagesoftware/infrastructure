@@ -35,3 +35,14 @@ Requirements
 
 Governance
 ----------
+
+Maintenance
+-----------
+
+This section will describe some of the technical details involved in some
+aspects of *Global Village* management.
+
+Sphinx
+^^^^^^
+
+
