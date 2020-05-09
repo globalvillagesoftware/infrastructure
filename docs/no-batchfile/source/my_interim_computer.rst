@@ -100,3 +100,4 @@ Hardware Configuration
 Software Configuration
 ----------------------
 
+See :ref:`devtools`

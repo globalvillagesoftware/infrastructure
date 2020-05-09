@@ -1,10 +1,10 @@
 ########################################
-*Global Village* Development Environment
+|gv| Development Environment
 ########################################
 
-This section describes the *Global Village* software development environment and
-it's components. Eventually, the whole process of generating and maintaining the
-*Global Village* software development environment will be automated. These notes
+This section describes the |gv| software development environment and it's
+components. Eventually, the whole process of generating and maintaining the
+|gv| software development environment will be automated. These notes
 will help develop the automated environment as well as support the interim
 manual environment.
 
@@ -15,9 +15,11 @@ Major Tools
 Operating System
 ================
 
-The *Global Village* is platforrm neutral and the development environment can be
-installed on any supported platform. The implication of a supported platform is
-that we know how to create the platform and can automate this process.
+The |gv| is platforrm neutral and the development environment can be installed
+on any supported platform. The implication of a supported platform is that
+we know how to create the platform and can automate this process. This means an
+optional installation of a preferred operating system along with any missing
+tools needed to support the |gv| software development environment.
 
 Linux
 -----
@@ -51,11 +53,13 @@ The nature of a software development environment that supports Windows has not
 yet been determined. It will follow, as closely as possible, the development
 environment for Linux.
 
+.. _devtools:
+
 Development Tools
 =================
 
-These are the principal tools used by the *Global Village* organization. They
-must be installed into the operating system environment.
+These are the principal tools used by the |gv| organization. They must be
+installed into the operating system environment.
 
 Eclipse
 -------
@@ -89,13 +93,13 @@ outside of Eclipse.
 Python
 ------
 
-This is the primary programming language used by the *Global Village* for
+This is the primary programming language used by the |br| for
 software development. It can be installed from the `Python`_ downloads site.
 
 Sphinx
 ------
 
-This is the tool used for creating documentation in the *Global Village*
+This is the tool used for creating documentation in the |gv|
 environment. it is based on Python and can be installed from within PyDev using
 the following pip command, getting the software from the
 `Python Package Index`_ site.

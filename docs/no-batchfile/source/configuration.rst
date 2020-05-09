@@ -9,15 +9,15 @@ become available to do so.
 **********
 Objectives
 **********
-*Global Village* configuration should, at least, support open source software
+|gv| configuration should, at least, support open source software
 development. Any extension of this support to commercial or governmental
 environments will be a distant prospect.
 
 Ultimately, configuration will support the development and use of a variety of
-programs in the *Global Village* environment. In doing this, generality and the
+programs in the |gv| environment. In doing this, generality and the
 possibilities of additional application areas should be kept in mind. At least
 some of the developers will belong to organizations that have in-house needs
-that differ from those of the *Global Village*.
+that differ from those of the |gv|.
 
 **********************
 What is configuration?
@@ -34,7 +34,7 @@ the people involved in computer software and their activities.
 The Software Life-Cycle
 ***********************
 A brief examination of the software development process as practiced by the
-*Global Village* organization will be given here. Since the configuration must
+|gv| organization will be given here. Since the configuration must
 support this process, it will help to uderstand a little of what the software
 development process is all about. This is all written from the pespective of
 open source software development,
@@ -122,8 +122,8 @@ to ensure that the document stays in synchronization with changing concept and
 requirements. It also should link to implementation artifacts to ensure that the
 implementation and the design are synchronized.
 
-The *Global Village* Approach
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ 
+The |gv| Approach
+^^^^^^^^^^^^^^^^^ 
 Here we describe some early design choices. These are all subject to change as
 implementation proceeds.
 

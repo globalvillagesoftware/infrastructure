@@ -54,7 +54,8 @@ rst_prolog = """
 .. |br| raw:: html
 
    <br />
-   
+
+.. |gv| replace:: *Global Village*   
 """
 
 # These are links to external documents and services that can be accessed from

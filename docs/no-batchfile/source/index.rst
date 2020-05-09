@@ -1,14 +1,14 @@
-Welcome to the *Global Village* Environment concepts document
-=============================================================
+Welcome to the |gv| Environment concepts document
+=================================================
 
 This document is a collection of relatively independent essays on various topics
-related to the *Global Village*. It is a temporary document and eventually each
+related to the |gv|. It is a temporary document and eventually each
 of these essays will form a chapter in one or more documents that will describe
-what the *Global Village* is all about. It is a bit like a blog as essays are
+what the |gv| is all about. It is a bit like a blog as essays are
 added in random order as thoughts occur to me. In the meantime, this document
 provides a home for these essays. The essays will be used to help drive the
 conceptualization of each of the applications that will form part of the
-application offering of the *Global Village*.
+application offering of the |gv|.
 
 .. toctree::
    :maxdepth: 2
@@ -22,6 +22,7 @@ application offering of the *Global Village*.
    links
    release_management
    version
+   credential_management
 
 Indices and tables
 ==================

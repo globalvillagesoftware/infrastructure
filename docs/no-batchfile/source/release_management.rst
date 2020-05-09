@@ -136,9 +136,9 @@ Withdrawal
 *******************
 Repository Branches
 *******************
-*Global Village* makes heavy use of a repository management system. Here is a
-high-level view of obe of its' major features and why it is a help to
-application release management.
+|gv| makes heavy use of a repository management system. Here is a high-level
+view of of of its' major features and why it is a help to application release
+management.
  
 Background
 ----------
