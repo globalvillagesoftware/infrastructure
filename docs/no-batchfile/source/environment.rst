@@ -1,6 +1,6 @@
-########################################
+############################
 |gv| Development Environment
-########################################
+############################
 
 This section describes the |gv| software development environment and it's
 components. Eventually, the whole process of generating and maintaining the
@@ -8,9 +8,11 @@ components. Eventually, the whole process of generating and maintaining the
 will help develop the automated environment as well as support the interim
 manual environment.
 
-***********
-Major Tools
-***********
+.. _devtools:
+
+********************
+Software Environment
+********************
 
 Operating System
 ================
@@ -26,6 +28,26 @@ Linux
 
 Ubuntu
 ^^^^^^
+
+This will be the first operating system supported. The latest version at the
+time of the |gv| software development environment. This installation will not
+take place if the user already has an operating system installed. The operating
+system can be installed on bare metal or a vitual machine, capable of running
+under *VirtualBox* can be created. It is OK to not create an operating system if
+an acceptable one can be found on the system. Acceptable means that we know how
+to install the necessary tools on it.
+
+Windows
+-------
+
+If the user wants a multi-boot environment that contains *Windows* it should be
+installed before anu other operating system since the *Windows* installation
+does not pay any attention to other operating systems that may be present and
+places its' own boot code on the system, thus making other bootable systems
+inaccessible. Linux based systems use a boot manager called *Grub* for
+*Grand Unified Boot Loader*, which is good at handling existing bootable systems
+and simply adds any existing system to it's tables thus allowing the selection
+of multiple installed operating systems at boot time.
 
 Disk Layout
 """""""""""
@@ -52,8 +74,6 @@ Windows
 The nature of a software development environment that supports Windows has not
 yet been determined. It will follow, as closely as possible, the development
 environment for Linux.
-
-.. _devtools:
 
 Development Tools
 =================
