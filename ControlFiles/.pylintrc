@@ -1,0 +1,13 @@
+-disable=pointless-string-statements
+-include-naming-hint=y
+--module-rgx='[a-z](?:_?[a-z0-9](?!_/Z))*'
+--const-rgx='gv[A-Z](?:_?[A-Z0-9](?!_/Z))*'
+--class-rgx='_?(?:[A-Z][A-Za-z0-9](?!_/Z))*'
+--function-rgx='_?(?:[A-Z][A-Za-z0-9](?!_/Z))*'
+--method-rgx
+--attr-rgx
+--argument-rgx
+--variable-rgx
+--class-attribute-rgx
+--inlinevar-rgx
+--reports=y
