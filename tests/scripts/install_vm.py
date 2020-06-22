@@ -3,7 +3,7 @@ Created on Apr. 19, 2020
 
 @author: Jonathan Gossage
 
-This module handles the actual creation and configuration of a virtual machine
+This module handles the actual creation and configurationx of a virtual machine
 for VirtualBox.
 
 @author: jonathan

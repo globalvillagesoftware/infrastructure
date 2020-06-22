@@ -2,7 +2,7 @@
 #
 # This file only contains a selection of the most common options. For a full
 # list see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
+# https://www.sphinx-doc.org/en/master/usage/configurationx.html
 from docutils.parsers import rst
 
 # -- Path setup --------------------------------------------------------------
@@ -31,7 +31,7 @@ copyright = f'2020, {author}'
 release = '0.1.0'
 
 
-# -- General configuration ---------------------------------------------------
+# -- General configurationx ---------------------------------------------------
 
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
@@ -101,11 +101,11 @@ html_theme_options = {
     'includehidden': False  
 }
 
-# -- Extension configuration -------------------------------------------------
+# -- Extension configurationx -------------------------------------------------
 
 # -- Options for intersphinx extension ---------------------------------------
 
-# Example configuration for intersphinx: refer to the Python standard library.
+# Example configurationx for intersphinx: refer to the Python standard library.
 intersphinx_mapping = {'https://docs.python.org/3/': None}
 
 # -- Options for todo extension ----------------------------------------------
