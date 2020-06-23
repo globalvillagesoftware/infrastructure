@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <?eclipse-pydev version="1.0"?><pydev_project>
-                                
+                                    
+    
     
     
     
@@ -9,11 +10,11 @@
     
     <pydev_pathproperty name="org.python.pydev.PROJECT_SOURCE_PATH">
         <path>/${PROJECT_DIR_NAME}</path>
-        <path>/${PROJECT_DIR_NAME}/lib</path>
         <path>/${PROJECT_DIR_NAME}/tests</path>
         <path>/${PROJECT_DIR_NAME}/tests/scripts</path>
     </pydev_pathproperty>
-                                
+                                    
+    
     
     
     
@@ -21,7 +22,8 @@
     
     
     <pydev_property name="org.python.pydev.PYTHON_PROJECT_VERSION">python interpreter</pydev_property>
-                                
+                                    
+    
     
     
     
@@ -29,7 +31,8 @@
     
     
     <pydev_property name="org.python.pydev.PYTHON_PROJECT_INTERPRETER">Global Village</pydev_property>
-                            
+                                
+
 
 
 
