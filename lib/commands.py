@@ -6,7 +6,7 @@ Created on May 27, 2020
 @author: jgossage
 """
 
-from logging import Logging as _L
+from lib.gvLogging import Logging as _L
 
 
 class ShellCommands(object):

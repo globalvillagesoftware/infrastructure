@@ -9,6 +9,7 @@ Created on May 12, 2020
 
 from gi.repository import Secret
 
+
 class Secrets():
     def __init__(self):
         """Define the predefined schemas and attributes for `libsecret`"""
@@ -30,5 +31,4 @@ class Secrets():
         sch = Secret.Schema.new(name, Secret.SchemaFlags.NONE, schema)
 
     def createSchemaAttributes(self, **kwargs):
-        return {k:v for (k, v) in kwargs.items()}
-
+        return {k: v for k, v in kwargs.items()}

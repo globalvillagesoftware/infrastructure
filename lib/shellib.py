@@ -1,6 +1,6 @@
 # Created on Jun. 3, 2020
 #
-# @author: jgossage
+# @author: Jonathan Gossage
 """
 """
 

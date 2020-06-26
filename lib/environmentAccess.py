@@ -8,14 +8,16 @@ Village test environment to find the information that they need to function
 without having to examine low-level system idiosyncratic data.
 """
 
+
 class gvEnvironmentError(Exception):
     """
     Generic exception to raise and log fatal errors building a Global Village
     environment.
     """
-    def __init__(self, msg : str) -> None:
+    def __init__(self, msg: str) -> None:
         super().__init__()
         self.msg = f"E: {msg}"
+
     def __str__(self) -> str:
         return self.msg
 
@@ -23,7 +25,6 @@ class gvEnvironmentError(Exception):
 # Define names of environment variables used in a GlobalVillage test
 # environment
 
-"""Major system type such as Linux or Windows"""  #pylint: disable=pointless-string-statement
 GVSYSTEM          = 'GVSYSTEM'
 """
 Name of the computer node this environment is run on. Note that the environment
@@ -60,8 +61,8 @@ gvProcessor       = 'gvProcessor'
 gvOSName          = 'gvOSName'
 """
 Only appears on Linux systems. Indicates whether the Gnu subsystem and related
-commands are present. The absence of this specification is not necessarily proof
-that GNU is not present, depending on what the Linux distribution decides to
-communicate.
+commands are present. The absence of this specification is not necessarily
+proof that GNU is not present, depending on what the Linux distribution decides
+to communicate.
 """
 gvGnu             = 'gvGnu'

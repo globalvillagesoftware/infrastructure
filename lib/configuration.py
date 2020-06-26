@@ -58,6 +58,7 @@ Created on Apr. 19, 2020
 
 """
 #TODO: Complete documentation of the configuration process - Issue 1
+
 from typing import Any, Optional, Dict
 
 from lib.parse_arguments import Arguments as _a

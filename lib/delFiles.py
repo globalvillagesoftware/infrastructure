@@ -1,11 +1,12 @@
 """
 Created on Jun. 17, 2020
 
-@author: jgossage
+@author: Jonathan Gossage
 """
 
 from pathlib import Path
 import sys
+
 
 class delFiles():
 
@@ -21,8 +22,8 @@ class delFiles():
             valid = False
         self._prefix = prefix
         self._sudo = sudo
-        self._recursion=recursion
-        self._options=''
+        self._recursion = recursion
+        self._options = ''
 
     def __call__(self, files=[]):
         ret = 0

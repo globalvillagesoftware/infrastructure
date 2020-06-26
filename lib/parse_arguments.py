@@ -1,7 +1,5 @@
 """
-Created on Apr. 19, 2020
-
-@author: Jonathan Gossage
+Parse command line arguments
 
 This code is based on code written by Fabio Zadrozny for his
 `pvdev <https://www.pydev.org>`_ plugin for the Eclipse IDE.
@@ -9,12 +7,17 @@ This code is based on code written by Fabio Zadrozny for his
 This particular version is interim until the full ``StartApps`` package from
 Global Village is available.
 
-This module functions as a front end to the Python ``argparse`` module and makes
-it unnecessary to fully program the argument parsing for each program
+This module functions as a front end to the Python ``argparse`` module and
+makes it unnecessary to fully program the argument parsing for each program
 invocation. The argument parsing environment is dynamically constructed at
 runtime instead of being statically compiled when the program is written.
 Essentially, the program has become table driven so far as argument parsing is
 concerned.
+
+Created on Apr. 19, 2020
+
+@author: Jonathan Gossage
+
 """
 
 import importlib

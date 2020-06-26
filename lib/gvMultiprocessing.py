@@ -3,16 +3,16 @@ Control components of a workflow that can work in parallel with each other.
 
 Created on Jun. 20, 2020
 
-@author: jgossage
+@author: Jonathan Gossage
 """
 
 #__all__ = ['Workflow', 'Component', 'ResourceProvider', 'Resource', 'Process',
 #           'Module']
 
-from importlib import _import_module as _im
+from importlib import import_module as _im
 from typing import Optional
 
-from gvLogging import Logging as _L
+from lib.gvLogging import Logging as _L
 
 
 class Workflow():

@@ -1,9 +1,6 @@
 """
-Created on Apr. 30, 2020
+Interface to Python logging.
 
-@author: Jonathan Gossage
-
-This is the interface to the Python logging system.
 The logging system can be configured to write all logging messages to stderr
 and this will be the default configuration if nothing more complex is
 supplied.
@@ -11,6 +8,10 @@ The configuration of the logging system will be read from the configuration
 data and setup in the Logging initializer. We make use of the Python logging
 system by default but this can be overridden by the user if a different logging
 system is desired.
+
+Created on Apr. 30, 2020
+
+@author: Jonathan Gossage
 """
 
 import logging

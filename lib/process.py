@@ -8,8 +8,6 @@ output from the graphical application is used in the rest of the workflow that
 is being controlled by *Python*. Processes are actually started and controlled
 by the operating system that is providing the environment for the workflow.
 
-
-
 Created on Jun. 20, 2020
 
 @author: jgossage
