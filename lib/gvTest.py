@@ -15,7 +15,7 @@ import unittest
 
 
 def gvTestController(envCheck: Union[Sequence[Union[Path, str]],
-                                     Union[Path, str]]=Path('lib/gvEnvChecks'),
+                                     Union[Path, str]]='lib.gvEnvChecks',
                      testPath: Optional[Union[Sequence[Union[Path, str]],
                                               Union[Path, str]]]=None,
                      caller: Optional[ModuleType]=None) -> int:
