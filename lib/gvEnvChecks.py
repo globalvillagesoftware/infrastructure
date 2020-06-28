@@ -62,7 +62,8 @@ Encapsulates the generation of logging messages.
             # We end up with a dictionary where the key is k and the value is v
             # for each entry in the dictionary.
             _lfd = {k: v for k, v in _lf}
-            _msg = []
+            del(_lf)  # Get rid of any references to stack frames
+            _msg = []  # Will contain the test messages to be logged
             # Loop logging a test message for each logging level. Messages that
             # have a logging level that is greater than the message level
             # should not show up when the results of the logging are tested
@@ -73,6 +74,7 @@ Encapsulates the generation of logging messages.
                 # Log the message if the logging level allows it
                 # We pick up the logging method from the dictionary _lfd
                 # We then call the method so defined to do the actual logging.
+                assert len(_msg) > 0
                 _lfd[_ln](_msg[-1])
             return _msg
 
