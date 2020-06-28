@@ -4,9 +4,13 @@ Semantic versioning
 Implements `semantic versioning <https://semver.org/>`_. It implements the
 entire specification.
 
-Created on Apr. 26, 2020
+.. only:: development_administrator
 
-@author: Jonathan Gossage
+    Module management
+    
+    Created on Apr. 26, 2020
+    
+    @author: Jonathan Gossage
 """
 
 

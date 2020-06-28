@@ -1,6 +1,8 @@
 #!/usr/local/env python
 # encoding: utf-8
 """
+Install **Oracle** `VirtualBox`
+
 Steps:
     1. Setup Oracle repository in apt.
     2. Install VirtualBox from repository.
@@ -13,13 +15,17 @@ installVirtualBox is a description
 
 It defines classes_and_methods
 
-@author:     user_name
+.. only:: development_administrator
 
-@copyright:  2020 organization_name. All rights reserved.
-
-@license:    license
-
-@contact:    user_email
+    Module management
+    
+    @author:     Jonathan Gossage
+    
+    @copyright:  2020 Global Village. All rights reserved.
+    
+    @license:    license
+    
+    @contact:    user_email
 """
 
 import sys

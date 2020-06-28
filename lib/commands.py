@@ -1,9 +1,11 @@
 """
 Functions that interface to a command in a terminal environment
 
-Created on May 27, 2020
+.. only:: development_administrator
 
-@author: jgossage
+    Created on May 27, 2020
+    
+    @author: jgossage
 """
 
 from lib.gvLogging import Logging as _L

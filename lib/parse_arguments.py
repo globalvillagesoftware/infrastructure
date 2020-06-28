@@ -14,10 +14,13 @@ runtime instead of being statically compiled when the program is written.
 Essentially, the program has become table driven so far as argument parsing is
 concerned.
 
-Created on Apr. 19, 2020
+.. only:: development_administrator
 
-@author: Jonathan Gossage
-
+    Module management
+    
+    Created on Apr. 19, 2020
+    
+    @author: Jonathan Gossage
 """
 
 import importlib

@@ -1,9 +1,11 @@
 """
 Testing utilities
 
-Created on Jun. 26, 2020
+.. only:: development_administrator
 
-@author: Jonathan Gossage
+    Created on Jun. 26, 2020
+    
+    @author: Jonathan Gossage
 """
 
 import os

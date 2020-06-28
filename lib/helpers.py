@@ -1,7 +1,11 @@
 """
-Created on May 7, 2020
+Helper functions for the *Global Village* environment
 
-@author: Jonathan Gossage
+.. only:: development_administrator
+
+    Created on May 7, 2020
+    
+    @author: Jonathan Gossage
 """
 
 import sys

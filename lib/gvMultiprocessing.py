@@ -1,9 +1,11 @@
 """
 Control components of a workflow that can work in parallel with each other.
 
-Created on Jun. 20, 2020
+.. only:: development_administrator
 
-@author: Jonathan Gossage
+    Created on Jun. 20, 2020
+    
+    @author: Jonathan Gossage
 """
 
 #__all__ = ['Workflow', 'Component', 'ResourceProvider', 'Resource', 'Process',

@@ -1,7 +1,11 @@
 """
-Created on May 27, 2020
+Linux platform configuration support
 
-@author: Jonathan Gossage
+.. only:: development_administrator
+
+    Created on May 27, 2020
+    
+    @author: Jonathan Gossage
 
 This module contains definitions that allow modules that run in a Global
 Village test environment to find the information that they need to function

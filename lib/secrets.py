@@ -1,10 +1,14 @@
 """
-A library of functions that support credential management using *Gnome*
-`libsecret`
+Library of functions to support credential management using *Gnome* `libsecret`
 
-Created on May 12, 2020
 
-@author: Jonathan Gossage
+.. only:: development_administrator
+
+    Module management
+    
+    Created on May 12, 2020
+    
+    @author: Jonathan Gossage
 """
 
 from gi.repository import Secret

@@ -1,12 +1,16 @@
 """
-Created on Apr. 19, 2020
+Script to install a virtual machine in **Oracle** `VirtualBox`
 
-@author: Jonathan Gossage
-
-This module handles the actual creation and configurationx of a virtual machine
+This module handles the actual creation and configuration of a virtual machine
 for VirtualBox.
 
-@author: jonathan
+.. only:: development_administrator
+
+    Module management
+    
+    Created on Apr. 19, 2020
+    
+    @author: Jonathan Gossage
 """
 
 class Install(object):

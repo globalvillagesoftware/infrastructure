@@ -52,9 +52,11 @@ system:
       This list of entries defines the members of the team that developed this
       application.
 
-Created on Apr. 19, 2020
+.. only:: development_administrator
 
-@author: Jonathan Gossage
+    Created on Apr. 19, 2020
+    
+    @author: Jonathan Gossage
 
 """
 #TODO: Complete documentation of the configuration process - Issue 1

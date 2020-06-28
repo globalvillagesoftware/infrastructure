@@ -7,9 +7,11 @@ including logging when running unit tests since these tests provide a sanity
 check for the for the environmental support systems.
 system..
 
-Created on Jun. 24, 2020
+.. only:: development_administrator
 
-@author: Jonathan Gossage
+    Created on Jun. 24, 2020
+    
+    @author: Jonathan Gossage
 """
 
 import inspect

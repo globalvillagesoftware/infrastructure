@@ -1,6 +1,45 @@
 """
 Interface to Python logging.
 
+The standard logging system, supplied by Python is very flexible but does not
+handle certain cases well. To understand why this is so, lets review the
+functionality that needs to be supplied by a logging system.
+
+Logging system needs
+====================
+
+Logging system principles
+=========================
+
+There are three basic matters to be considered when logging:
+
+* Why should a message be logged?
+* What does the message look like?
+* Where should the message go?
+
+Logging message applicability
+-----------------------------
+
+
+Logging message appearance
+--------------------------
+
+Lets look at the implications within the question, `What should logging
+messages look like?`
+
+There are two parts to a logging message:
+
+* Application system specific information
+* Logging system specific information
+
+Application specific information
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Logging system specific information
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Logging message destination
+---------------------------
 The logging system can be configured to write all logging messages to stderr
 and this will be the default configuration if nothing more complex is
 supplied.
@@ -9,9 +48,25 @@ data and setup in the Logging initializer. We make use of the Python logging
 system by default but this can be overridden by the user if a different logging
 system is desired.
 
-Created on Apr. 30, 2020
+Python logging system design
+============================
 
-@author: Jonathan Gossage
+Application logging system design
+=================================
+
+Wrapup
+======
+
+Design principles
+-----------------
+
+.. only:: development_administrator
+
+    Module management
+    
+    Created on Apr. 30, 2020
+    
+    @author: Jonathan Gossage
 """
 
 import logging
@@ -38,9 +93,25 @@ def setLogging(name: Optional[str]=None,
                # The formatter that will be used by this logger
                formatter: Optional[logging.Formatter]=None) -> logging.Logger:
     """
-    This function is platform and software vendor neutral.
-    If the user does not supply the name of a logger to be created, it will
-    create the Global Village logger.
+    This function always creates the Global Village logger when none is
+    requested. This ensures that the Global Village environment will never
+    intrude on other users of the logging system by setting up the root *Global
+    Village* logger with `no-propagate`, to ensure that all *Global Village*
+    messages will be logged within the *Global Village* logging environment and
+    will not escape to the root logger that might have been modified by some
+    other user. Any request to create a child of the root logger will be forced
+    to to have `propagate` set, permitting delegation to the root logger. This
+    function can be used before the standard *Global Village* logging
+    environment has been created since there is a dependency between the
+    standard *Global Village* logging environment and the the *Global Village*
+    configuration which contains a variable that can suppress logging.
+
+    :param str name: The name of the logger requested. It should have the
+                     format of a logger e.g. rootLogger.myLogger. If the name
+                     does not contain the name of the Global Village root
+                     logger that name will be appended. If it is `None`, the
+                     root logger for the Global Village environment will be
+                     assumed.
     """
     _gl = logging.getLogger(gvLogName)  # Get our handler
     if _gl.getEffectiveLevel() < level:

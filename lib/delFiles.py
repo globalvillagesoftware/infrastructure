@@ -1,7 +1,11 @@
 """
-Created on Jun. 17, 2020
+Delete multiple files
 
-@author: Jonathan Gossage
+.. only:: development_administrator
+
+    Created on Jun. 17, 2020
+    
+    @author: Jonathan Gossage
 """
 
 from pathlib import Path

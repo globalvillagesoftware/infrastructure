@@ -1,5 +1,7 @@
 #!/usr/bin/env python
 """
+Capture Linux platform dependent information
+
 Created on May 27, 2020
 
 @author: Jonathan Gossage
