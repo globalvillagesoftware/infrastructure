@@ -47,7 +47,7 @@ def setLogging(name: Optional[str]=None,
         _gl.setLevel(level)
     if not _gl.hasHandlers():  # Add a handler if none configured
         _gl.addHandler(logging.StreamHandler())
-    if filter:
+    if filter_:
         _gl.addFilter(filter_)
     if formatter:
         _gl.addFormatter(formatter)
