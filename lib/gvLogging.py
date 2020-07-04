@@ -77,6 +77,8 @@ import lib.configuration as _c
 gvLogName = 'Global Village'
 gvHandler = 'gvHandler'
 
+__ALL__ = ['set_logging', 'Logging']
+
 #NOTE: Remove the dependence on the configuration
 
 
@@ -128,8 +130,9 @@ def setLogging(name: Optional[str]=None,
 
 class Logging(object):
     """
-This class is only minimally implemented at this stage. It simply
-provides the  writing of text to stderr.
+This class is only minimally implemented at this stage.
+
+It simply provides the  writing of text to stderr.
 It establishes logging on stderr very early so all code in the application,
 including early startup code can use logging, thus giving a single interface
 to the logging facilities for the application. This class always creates the

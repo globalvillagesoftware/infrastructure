@@ -1,9 +1,13 @@
 """
 Exhaustive test of gvTest
 
-Created on Jun. 27, 2020
+.. only:: development_administrator
 
-@author: Jonathan Gossage
+    Module management
+    
+    Created on Jun. 27, 2020
+    
+    @author: Jonathan Gossage
 """
 
 import sys
