@@ -47,7 +47,7 @@ def PlatformWorker() -> None:
                                 r,
                                 re.VERBOSE)
             if m is not None:
-                print(f'Matching release groups - {m.span(1)/m.group(1)}')
+                print(f'Matching release groups - {m.span(1)}/{m.group(1)}')
                 un[ea.gvOSRelease] = m.group(1)
                 un[ea.gvOSReleaseDesc] = m.group(0)
             else:

@@ -29,6 +29,7 @@ import sys
 
 from argparse import ArgumentParser, RawDescriptionHelpFormatter, Action
 
+import lib.gvLogging as _l
 
 class handleVerbosity(Action):
     """
@@ -51,10 +52,9 @@ program in debugging mode.
                  values,
                  option_string=None):
         if ++self._count >= 3:
-            if self._count == 3:
-                print('Maximum permitted verbosity level is 3.'
-                      ' Truncating level accordingly',
-                      file=sys.stderr)
+            if self._count > 3:
+                _l.getLogging().warning('Maximum permitted verbosity level'
+                                        'is 3. Truncating level accordingly')
         else:
             setattr(namespace,
                     self.dest,

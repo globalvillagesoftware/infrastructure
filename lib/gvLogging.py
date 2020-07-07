@@ -70,19 +70,20 @@ Design principles
 """
 
 import logging
-from typing import Optional, Dict
+from typing import Optional, Dict, Union
 
 import lib.configuration as _c
 
 gvLogName = 'Global Village'
 gvHandler = 'gvHandler'
+gvLogger: Optional[Union[logging.Logger, 'Logging']] = None
 
-__ALL__ = ['set_logging', 'Logging']
+__ALL__ = ['set_logging', 'Logging', 'getLogging']
 
 #NOTE: Remove the dependence on the configuration
 
 
-def setLogging(name: Optional[str]=None,
+def setLogging(name: Optional[str]=gvLogName,
                level=logging.INFO,
                propogate=False,     # Propagation from logger to logger stops
                                     # here. This ensures that our messages do
@@ -115,11 +116,11 @@ def setLogging(name: Optional[str]=None,
                      root logger for the Global Village environment will be
                      assumed.
     """
-    _gl = logging.getLogger(gvLogName)  # Get our handler
+    _gl = logging.getLogger(name)  # Get our handler
     if _gl.getEffectiveLevel() < level:
         _gl.setLevel(level)
     if not _gl.hasHandlers():  # Add a handler if none configured
-        _gl.addHandler(logging.StreamHandler())
+        _gl.addHandler(handler)
     if filter_:
         _gl.addFilter(filter_)
     if formatter:
@@ -141,10 +142,9 @@ the logging environment from the configuration file.
     """
 
     def __init__(self,
-                 cfg: _c.Configuration,
                  propogate=False,
                  verbose=0) -> None:
-        self._cfg = cfg
+        self._cfg: Dict[str, CfgEntry] = {}
         self._level: int = self.effectiveLevel(verbose)
         self._logger: logging.Logger = logging.getLogger(gvLogName)
         self._handlers: Dict[str, logging.Handler] = {}
@@ -156,17 +156,13 @@ the logging environment from the configuration file.
                             logging.StreamHandler())
         self._logger.propogate = propogate
 
-        # Get access to configuration variables stored in the configuration
-        # module,
-        if cfg is None or not _c or _c.nologging not in cfg or\
-                not self._cfg.get(_c.nologging):
-            #TODO: Provide the rest of the logging system initialization
-            # The rest of the logging initialization. The big item is
-            # the definition of the loggers used by a specific
-            # application. This setup cannot be performed until
-            # configuration data defining the logging configuration becomes
-            # available.
-            pass
+        #TODO: Provide the rest of the logging system initialization
+        # The rest of the logging initialization. The big item is
+        # the definition of the loggers used by a specific
+        # application. This setup cannot be performed until
+        # configuration data defining the logging configuration becomes
+        # available.
+        pass
 
     def effectiveLevel(self,
                        verbose: int=0) -> int:
@@ -221,8 +217,8 @@ the logging environment from the configuration file.
         Consult the Python documentation for logging.debug for details
         """
         self._logger.debug(msg,
-                           args,
-                           kwargs)
+                           *args,
+                           **kwargs)
 
     def info(self,
              msg: str,
@@ -232,8 +228,8 @@ the logging environment from the configuration file.
         Consult the Python documentation for logging.info for details
         """
         self._logger.info(msg,
-                          args,
-                          kwargs)
+                          *args,
+                          **kwargs)
 
     def warning(self,
                 msg: str,
@@ -243,8 +239,8 @@ the logging environment from the configuration file.
         Consult the Python documentation for logging.warning for details
         """
         self._logger.warning(msg,
-                             args,
-                             kwargs)
+                             *args,
+                             **kwargs)
 
     def error(self,
               msg: str,
@@ -254,8 +250,8 @@ the logging environment from the configuration file.
         Consult the Python documentation for logging.error for details
         """
         self._logger.error(msg,
-                           args,
-                           kwargs)
+                           *args,
+                           **kwargs)
 
     def critical(self,
                  msg: str,
@@ -265,8 +261,8 @@ the logging environment from the configuration file.
         Consult the Python documentation for logging.critical for details
         """
         self._logger.critical(msg,
-                              args,
-                              kwargs)
+                              *args,
+                              **kwargs)
 
     def exception(self,
                   msg: str,
@@ -276,8 +272,8 @@ the logging environment from the configuration file.
         Consult the Python documentation for logging.exception for details
         """
         self._logger.exception(msg,
-                               args,
-                               kwargs)
+                               *args,
+                               **kwargs)
 
     def log(self,
             level: int,
@@ -289,8 +285,8 @@ the logging environment from the configuration file.
         """
         self._logger.log(level,
                          msg,
-                         args,
-                         kwargs)
+                         *args,
+                         **kwargs)
 
     def addHandler(self,
                    name: str,
@@ -313,3 +309,22 @@ the logging environment from the configuration file.
             self._logger.setLevel(_level)
         if self._handler:
             self._handler.setLevel(_level)
+
+
+def initializeLogging() -> Logging:
+    logger = Logging()
+    global gvLogger
+    gvLogger = logger
+    return logger
+
+
+def getLogging() -> Union[logging.Logger, Logging]:
+    """
+    This is the normal way for a class or module to discover the logging
+    environment. Using this function ensures that the user need not be
+    concerned about the state of the logging environment
+    """
+    if not gvLogger:
+        setLogging(gvLogName)
+    return gvLogger
+

@@ -68,6 +68,11 @@ from lib.parse_arguments import Arguments as _a
 #import lib.version
 #v = lib.version.Version
 
+# Define the types of testing supported
+unittests = 0x01
+functionaltests = 0x02
+integrationtests = 0x04
+acceptancetests = 0x08
 # Configuration item keys. These variables are for commonly used configuration
 # elements. Others are organization or application specific and their keys will
 # not appear here.
@@ -189,39 +194,70 @@ argsys       = None
 The name of the module that invokes or supplies a third party command line
 argument processing system.
 """
-
-
-class ArgDescriptor(object):
-    def __init__(self) -> None:
-        pass
+test: Optional[int] = None
+"""
+Defines the kind of testing being done on this run
+"""
 
 #TODO: Update configuration.py with key names from cfg.data
 
+class ArgDescriptor(object):
+    """
+    Describes how to define a command line override for a configuration entry.
+    This is an attribute of the `CfgEntry` for a configuration item.
+    If it has no value, the configuration item cannot be overridden fom the
+    command line.
+    """
+    def __init__(self) -> None:
+        pass
+
+
+class CfgAdmin():
+    """
+    This class contains the administrative data associated with a configuration
+    item. If it has no value, administrative ability for this configuration
+    item will be limited.
+    """
+    def __init__(self) -> None:
+        pass
 
 class CfgEntry(object):
     """
-    Encapsulates the key and value components of a dictionary entry.
+    Encapsulates all the components of a configuration entry.
     """
 
-#TODO: Expand definition to include variable definition for Arguments
+#TODO: Expand definition to include ability to handle command line arguments
     def __init__(self,
+                 name: str,
                  value: Any,
-                 ad=None,
+                 ad: Optional[ArgDescriptor]=None,
                  flags: int=0,
-                 admin: Optional[Any]=None) -> None:
+                 admin: Optional[CfgAdmin]=None) -> None:
         """
+        :param str name:         Name of the configuration item
         :param Any value:        The value for the dictionary entry
         :param ArgDescriptor ad: The argparse definition. If present, the
                                  argument can be overridden from the command
                                  line.
         :param int flags:        Flags that control the usage of the argument
-        :param Any admin:        Administrative data for this entry
-        """
-
+                                 They are independent of the administrative
+                                 environment
+        :param CfgAdmin admin:   Administrative data for this entry
+        """ 
+        self._name = name
         self._value = value
         self._ad    = ad
         self._flags = flags
         self._admin = admin
+
+    @property
+    def name(self) -> str:
+        return self._name
+
+    @name.setter
+    def name(self,
+             name: str):
+        self._name = name
 
     @property
     def value(self) -> Any:
@@ -236,13 +272,28 @@ class CfgEntry(object):
     def argDes(self):
         return self._ad
 
+    @argDes.setter
+    def argDes(self,
+              ad: ArgDescriptor):
+        self._ad = ad
+
     @property
     def flags(self) -> int:
         return self.flags
 
+    @flags.setter
+    def flags(self,
+              flags: int):
+        self._flags = flags
+
     @property
     def admin(self):
         return self._admin
+
+    @admin.setter
+    def admin(self,
+              admin: CfgAdmin):
+        self._admin = admin
 
 
 class Configuration(object):
@@ -250,49 +301,28 @@ class Configuration(object):
     classdocs TBA
     """
 
-    def __init__(self,
-                 cfg: Dict[str, CfgEntry]) -> None:
+    def __init__(self: 'Configuration') -> None:
         """
-        :param dict cfg: The configuration directory
         """
 
-        self._cfg = cfg
+        self._cfg: Dict[str, CfgEntry] = {}
         # Gives default values for critical configuration that may not be
         # specified elsewhere
-        self.set_member(debug,
-                        False)
-        self.set_member(profile,
-                        False)
-        self.set_member(noupdate,
-                        False)
-        self.set_member(nologging,
-                        False)
-        self.set_member(noargs,
-                        False)
-        self.set_member(noconfig,
-                        True)
-# Assume that arguments will be obtained from the command line via sys.argv
-        self.set_member(cmdargs,
-                        None)
-# Assume that an empty configuration file will be used. The actual file to be
-# used can be specified by the cfgfile argument on the command line or may be
-# set by our caller who might be a debugging system like unittest.
-        self.set_member(cmdfile,
-                         None)
-        #TODO: Repair the importation of the version module so it can be used
-        self.set_member(version,
-                        0.1)
-        self.set_member(release,
-                         '0.1.0')
-#        self._cfg[version]  = CfgEntry( version, v( 0, 1 ))
-        self.set_member(verbose,
-                        0)
-        self.set_member(uac,
-                        None)
+        default_cfg = ((debug, False), (profile, False), (noupdate, False),
+                       (nologging, False), (noargs, False), (noconfig, True),
+                       (cmdargs, None), (cmdfile, None), (version, 0.1),
+                       (release, '0.1.0'), (verbose, 0), (uac, None),
+                       (test, None))
+        for k, v in default_cfg:
+            if k not in self._cfg:
+                self._cfg[k] = CfgEntry(k,
+                                        v)
+
+        # Load the master preliminary configuration
 
         # Add the application level initialization to the configuration
 #        for c in init:
-#            self.set_member(c)
+#            self.setMember(c)
 
         # Load up and merge the configuration file for this run
         # It cannot be done earlier because its' location may be specified on
@@ -304,32 +334,39 @@ class Configuration(object):
         if not self._cfg.get(noargs):
             self._cfg.update(_a().Parse())
 
-    def set_member(self,
-                   key: str,
-                   value: Any) -> None:
+    @property
+    def cfg(self: 'Configuration') -> Dict[str, CfgEntry]:
+        return self._cfg
+
+    def setMember(self: 'Configuration',
+                  key: str,
+                  value: Any) -> None:
         """
         Sets an entry in the configuration given the key and value as separate
-        entities.
+        entities. Default value are used for the ArgDescriptor and CfgAdmin
+        properties of CfgEntry.
         """
-        self._cfg[key] = CfgEntry(value)
+        if key not in self._cfg:
+            self._cfg[key] = CfgEntry(key,
+                                      value)
 
-    def add(self,
+    def add(self: 'Configuration',
             entry: Mapping[str, Any]) -> None:
         """
         Adds the contents of a Mapping to the configuration. The values are
         converted to CfgEntries.
         """
         for k, v in entry:
-            if self._cfg.get(k) is not None:
+            if self._cfg.get(k) is None:
                 raise(KeyError,
                       f'{k} is already in configuration - cannot add')
             self._cfg[k] = CfgEntry(v)
 
-    def delete(self,
+    def delete(self: 'Configuration',
                entry: CfgEntry):
         if isinstance(entry,
                       CfgEntry):
-            if entry.key() in self._cfg:  # Got an entry object
+            if entry.key() not in self._cfg:  # Got an entry object
                 raise(KeyError,
                       f'{entry.key} is not in configuration - cannot delete')
             else:
@@ -341,8 +378,9 @@ class Configuration(object):
             else:
                 del self._cfg[entry]
 
-    def get(self, key) -> CfgEntry:
-        return(self._cfg.get(key).value())
+    def get(self: 'Configuration',
+            key: str) -> Optional[Any]:
+        return self._cfg.get(key)
 
     def len(self) -> int:
         return len(self._cfg)
