@@ -61,7 +61,7 @@ system:
 """
 #TODO: Complete documentation of the configuration process - Issue 1
 
-from typing import Any, Optional, Dict
+from typing import Any, Optional, Dict, Mapping, List
 
 from lib.parse_arguments import Arguments as _a
 
@@ -204,7 +204,6 @@ class CfgEntry(object):
     """
 
 #TODO: Expand definition to include variable definition for Arguments
-#TODO: Make a class entry for CfgEntry be the element of the configuration
     def __init__(self,
                  value: Any,
                  ad=None,
@@ -252,12 +251,12 @@ class Configuration(object):
     """
 
     def __init__(self,
-                 cfg: Dict[str, Any]) -> None:
+                 cfg: Dict[str, CfgEntry]) -> None:
         """
         :param dict cfg: The configuration directory
         """
 
-        self._cfg            = cfg
+        self._cfg = cfg
         # Gives default values for critical configuration that may not be
         # specified elsewhere
         self.set_member(debug,
@@ -278,13 +277,18 @@ class Configuration(object):
 # Assume that an empty configuration file will be used. The actual file to be
 # used can be specified by the cfgfile argument on the command line or may be
 # set by our caller who might be a debugging system like unittest.
-        self.set_member(cmdfile, None)
+        self.set_member(cmdfile,
+                         None)
         #TODO: Repair the importation of the version module so it can be used
-        self.set_member(version, 0.1)
-        self.set_member(release, '0.1.0')
+        self.set_member(version,
+                        0.1)
+        self.set_member(release,
+                         '0.1.0')
 #        self._cfg[version]  = CfgEntry( version, v( 0, 1 ))
-        self.set_member(verbose, 0)
-        self.set_member(uac, None)
+        self.set_member(verbose,
+                        0)
+        self.set_member(uac,
+                        None)
 
         # Add the application level initialization to the configuration
 #        for c in init:
@@ -301,23 +305,35 @@ class Configuration(object):
             self._cfg.update(_a().Parse())
 
     def set_member(self,
-                   member: Any):
-        self._cfg[member.key] = CfgEntry(member.value)
+                   key: str,
+                   value: Any) -> None:
+        """
+        Sets an entry in the configuration given the key and value as separate
+        entities.
+        """
+        self._cfg[key] = CfgEntry(value)
 
-    def add(self, entry):
-        if self._cfg.get(entry.key()) is not None:
-            raise(KeyError, '{} is already in configuration - cannot add'.
-                  format(entry.key()))
-        self._cfg[entry.key()] = CfgEntry(entry.value)
+    def add(self,
+            entry: Mapping[str, Any]) -> None:
+        """
+        Adds the contents of a Mapping to the configuration. The values are
+        converted to CfgEntries.
+        """
+        for k, v in entry:
+            if self._cfg.get(k) is not None:
+                raise(KeyError,
+                      f'{k} is already in configuration - cannot add')
+            self._cfg[k] = CfgEntry(v)
 
-    def delete(self, entry):
+    def delete(self,
+               entry: CfgEntry):
         if isinstance(entry,
                       CfgEntry):
             if entry.key() in self._cfg:  # Got an entry object
                 raise(KeyError,
                       f'{entry.key} is not in configuration - cannot delete')
             else:
-                    del self._cfg[entry.key]
+                    del self._cfg[entry.key()]
         else:  # Got a text key
             if entry.key() in self._cfg:
                 raise(KeyError,
@@ -325,14 +341,14 @@ class Configuration(object):
             else:
                 del self._cfg[entry]
 
-    def get(self, key) -> Any:
-        return(self._cfg.get(key).value)
+    def get(self, key) -> CfgEntry:
+        return(self._cfg.get(key).value())
 
-    def len(self):
+    def len(self) -> int:
         return len(self._cfg)
 
     def _loadConfig(self,
-                    cfg):
+                    cfg: List[str]) -> None:
         """
         Load the configuration data from disk
 
@@ -350,9 +366,8 @@ class Configuration(object):
                     # if not ent.key() in self._cfg or ent.key() in final_file:
                     final_file.update(ent)
         self._cfg.update(final_file)
-        return
 
-    def __call__(self):
+    def __call__(self) -> Dict[str, CfgEntry]:
         """
         The configuration file resides in a platform specific location and can
         reside in a different place for testing so that test versions of the

@@ -147,11 +147,13 @@ the logging environment from the configuration file.
         self._cfg = cfg
         self._level: int = self.effectiveLevel(verbose)
         self._logger: logging.Logger = logging.getLogger(gvLogName)
-        if self.logger.handler:
-            self._handlers: Dict[str, logging.Handler] = {gvHandler:
-                                                          self._logger.handler}
+        self._handlers: Dict[str, logging.Handler] = {}
+        if self.logger.handlers:
+            self._handlers: Dict[str, logging.Handler].update(
+                {gvHandler: self._logger.handler})
         else:
-            self.addHandler(logging.StreamHandler)
+            self.addHandler(gvHandler,
+                            logging.StreamHandler())
         self._logger.propogate = propogate
 
         # Get access to configuration variables stored in the configuration
@@ -293,7 +295,10 @@ the logging environment from the configuration file.
     def addHandler(self,
                    name: str,
                    hdlr: logging.Handler) -> None:
-        self._handlers.update(name, hdlr)
+        """
+        Adds a handler to the list of handlers for this Logging module.
+        """
+        self._handlers.update({name : hdlr})
         self._logger.addHandler(hdlr)
 
     @property
