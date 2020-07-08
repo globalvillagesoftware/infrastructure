@@ -61,7 +61,9 @@ system:
 """
 #TODO: Complete documentation of the configuration process - Issue 1
 
-from typing import Any, Optional, Dict, Mapping, List
+#import json
+#from json import JSONEncoder
+from typing import Any, Optional, Dict, Mapping, MutableMapping, List
 
 from lib.parse_arguments import Arguments as _a
 
@@ -201,33 +203,32 @@ Defines the kind of testing being done on this run
 
 #TODO: Update configuration.py with key names from cfg.data
 
-class ArgDescriptor(object):
+class ArgDescriptor(dict):
     """
     Describes how to define a command line override for a configuration entry.
     This is an attribute of the `CfgEntry` for a configuration item.
-    If it has no value, the configuration item cannot be overridden fom the
+    If it has no value, the configuration item cannot be overridden from the
     command line.
     """
-    def __init__(self) -> None:
-        pass
+    def __init__(self: 'ArgDescriptor') -> None:
+        super()
 
-
-class CfgAdmin():
+class CfgAdmin(dict):
     """
     This class contains the administrative data associated with a configuration
     item. If it has no value, administrative ability for this configuration
     item will be limited.
     """
-    def __init__(self) -> None:
-        pass
+    def __init__(self: 'CfgAdmin') -> None:
+        super()
 
-class CfgEntry(object):
+class CfgEntry(dict):
     """
     Encapsulates all the components of a configuration entry.
     """
 
 #TODO: Expand definition to include ability to handle command line arguments
-    def __init__(self,
+    def __init__(self: 'CfgEntry',
                  name: str,
                  value: Any,
                  ad: Optional[ArgDescriptor]=None,
@@ -244,56 +245,57 @@ class CfgEntry(object):
                                  environment
         :param CfgAdmin admin:   Administrative data for this entry
         """ 
-        self._name = name
-        self._value = value
-        self._ad    = ad
-        self._flags = flags
-        self._admin = admin
+        dict.__init__(self,
+                      _name=name,
+                      _value=value,
+                      _ad=ad,
+                      _flags=flags,
+                      _admin=admin)
 
     @property
-    def name(self) -> str:
-        return self._name
+    def name(self: 'CfgEntry') -> str:
+        return super()._name
 
     @name.setter
-    def name(self,
+    def name(self: 'CfgEntry',
              name: str):
-        self._name = name
+        super()._name = name
 
     @property
-    def value(self) -> Any:
-        return self._value
+    def value(self: 'CfgEntry') -> Any:
+        return super()._value
 
     @value.setter
-    def value(self,
+    def value(self: 'CfgEntry',
               v: Any):
-        self._value = v
+        super()._value = v
 
     @property
-    def argDes(self):
+    def argDes(self: 'CfgEntry'):
         return self._ad
 
     @argDes.setter
-    def argDes(self,
+    def argDes(self: 'CfgEntry',
               ad: ArgDescriptor):
-        self._ad = ad
+        super()._ad = ad
 
     @property
-    def flags(self) -> int:
-        return self.flags
+    def flags(self: 'CfgEntry') -> int:
+        return super()._flags
 
     @flags.setter
-    def flags(self,
+    def flags(self: 'CfgEntry',
               flags: int):
-        self._flags = flags
+        super()._flags = flags
 
     @property
-    def admin(self):
-        return self._admin
+    def admin(self: 'CfgEntry'):
+        return super()._admin
 
     @admin.setter
-    def admin(self,
+    def admin(self: 'CfgEntry',
               admin: CfgAdmin):
-        self._admin = admin
+        super()._admin = admin
 
 
 class Configuration(object):
