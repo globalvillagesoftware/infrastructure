@@ -63,18 +63,23 @@ system:
 
 #import json
 #from json import JSONEncoder
-from typing import Any, Optional, Dict, Mapping, MutableMapping, List
+from  argparse import SUPPRESS, FileType, REMAINDER, Action
+import sys
+from typing import (Any, Optional, Dict, Mapping, Tuple, Callable,
+                    Literal, Union)
 
 from lib.parse_arguments import Arguments as _a
 
 #import lib.version
 #v = lib.version.Version
 
-# Define the types of testing supported
+# Define the types of testing supported - used in the `test` configuration
+# entry.
 unittests = 0x01
 functionaltests = 0x02
 integrationtests = 0x04
 acceptancetests = 0x08
+fuzzytests = 0x10
 # Configuration item keys. These variables are for commonly used configuration
 # elements. Others are organization or application specific and their keys will
 # not appear here.
@@ -90,6 +95,8 @@ uid         = 'uid'
 """ *uid* is the numeric identifier of the user on Linux"""
 gid         = 'gid'
 """ *gid* is the numeric identifier of the user's primary group in Linux"""
+computer_name = 'computer_name'
+"""The name of the node that is running this program"""
 debug       = 'debug'
 """
 Run the program in `debugging <https://docs.python.org/3/library/debug.html>`_
@@ -185,24 +192,28 @@ noconfig     = 'noconfig'
 Flag that suppresses the use of configuration files leaving only the
 configuration supplied by the Global Village
 """
-logsys       = None
+logsys       = 'logsys'
 """
 The name of the module that invokes or supplies a third party gvLogging system
 This module should be callable. We make use of the initialization and call
 methods from this module.
 """
-argsys       = None
+argsys       = 'argsys'
 """
 The name of the module that invokes or supplies a third party command line
 argument processing system.
 """
-test: Optional[int] = None
+test         = 'test'
 """
 Defines the kind of testing being done on this run
 """
 
 #TODO: Update configuration.py with key names from cfg.data
 
+# The action types
+ACTLIT = Literal[ 'store,', 'store_const', 'store-true', 'store_false',
+                  'append', 'append_const', 'count', 'help', 'version',
+                  'extend']
 class ArgDescriptor(dict):
     """
     Describes how to define a command line override for a configuration entry.
@@ -210,8 +221,88 @@ class ArgDescriptor(dict):
     If it has no value, the configuration item cannot be overridden from the
     command line.
     """
-    def __init__(self: 'ArgDescriptor') -> None:
-        super()
+    def __init__(self: 'ArgDescriptor',
+                 dest: str,
+                 keywordDefs: Tuple[str, ...],
+                 positional: str,
+                 type_: Union[FileType, Callable[[str], type], type],
+                 nargs: Union[Literal['?', '*', '+'], REMAINDER, int],
+                 default: Any = SUPPRESS,
+                 const: Optional[Any]=None,
+                 action: Union[ACTLIT, Action]='store'
+                ) -> None:
+        dict.__init__(self,
+                      _dest=dest,
+                       _keywordDefs=keywordDefs,
+                       _positional=positional,
+                       _type=type_,
+                       _default=default,
+                       _const=const,
+                       _nargs=nargs,
+                       _action=action)
+
+    @property
+    def dest(self: 'ArgDescriptor') -> str:
+        return super()['_dest']
+
+    @dest.setter
+    def dest(self: 'ArgDescriptor',
+             type_: str) -> None:
+        super()['_dest'] = type_
+
+    @property
+    def keywordDefs(self: 'ArgDescriptor') -> Optional[str]:
+        return super()['_keywordDefs']
+
+    @keywordDefs.setter
+    def keywordDefs(self: 'ArgDescriptor',
+                    keywordDefs: str) -> None:
+        super()['_keywordDefs'] = keywordDefs
+
+    @property
+    def positional(self: 'ArgDescriptor') -> Optional[str]:
+        return super()['_positional']
+
+    @positional.setter
+    def positional(self: 'ArgDescriptor',
+                   positional: str) -> None:
+        super()['_positional'] = positional
+
+    @property
+    def type(self: 'ArgDescriptor') -> str:
+        return super()['_type']
+
+    @type.setter
+    def type(self: 'ArgDescriptor',
+             type_: str) -> None:
+        super()['_type'] = type_
+
+    @property
+    def default(self: 'ArgDescriptor') -> str:
+        return super()['_default']
+
+    @default.setter
+    def default(self: 'ArgDescriptor',
+                default: str) -> None:
+        super()['_default'] = default
+
+    @property
+    def const(self: 'ArgDescriptor') -> Any:
+        return super()['_const']
+
+    @const.setter
+    def const(self: 'ArgDescriptor',
+                const: str) -> None:
+        super()['_const'] = const
+
+    @property
+    def nargs(self: 'ArgDescriptor') -> Any:
+        return super()['_nargs']
+
+    @nargs.setter
+    def nargs(self: 'ArgDescriptor',
+                nargs: str) -> None:
+        super()['_nargs'] = nargs
 
 class CfgAdmin(dict):
     """
@@ -219,24 +310,49 @@ class CfgAdmin(dict):
     item. If it has no value, administrative ability for this configuration
     item will be limited.
     """
-    def __init__(self: 'CfgAdmin') -> None:
-        super()
+    def __init__(self: 'CfgAdmin',
+                 owner:Optional[str]=None,
+                 overideable: bool=False) -> None:
+        dict.__init__(self,
+                      _owner=owner,
+                      _overideable=overideable)
+
+    @property
+    def owner(self: 'CfgAdmin') -> str:
+        return super()['_owner']
+
+    @owner.setter
+    def owner(self: 'CfgAdmin',
+              owner: str) -> None:
+        super()['_owner'] = owner
+
+    @property
+    def overideable(self: 'CfgAdmin') -> str:
+        return super()['_overideable']
+
+    @overideable.setter
+    def overideable(self: 'CfgAdmin',
+              overideable: str) -> None:
+        super()['_overideable'] = overideable
 
 class CfgEntry(dict):
     """
     Encapsulates all the components of a configuration entry.
     """
 
-#TODO: Expand definition to include ability to handle command line arguments
     def __init__(self: 'CfgEntry',
-                 name: str,
-                 value: Any,
+                 name: str,  # This is the key of the entry in the
+                             # configuration dictionary
+                 value: Optional[Any],
+                 description: Optional[str]=None,
                  ad: Optional[ArgDescriptor]=None,
                  flags: int=0,
                  admin: Optional[CfgAdmin]=None) -> None:
         """
         :param str name:         Name of the configuration item
         :param Any value:        The value for the dictionary entry
+        :param str description:  Describes the purpose and use of the 
+                                 configuration item
         :param ArgDescriptor ad: The argparse definition. If present, the
                                  argument can be overridden from the command
                                  line.
@@ -248,57 +364,67 @@ class CfgEntry(dict):
         dict.__init__(self,
                       _name=name,
                       _value=value,
+                      _description=description,
                       _ad=ad,
                       _flags=flags,
                       _admin=admin)
 
     @property
     def name(self: 'CfgEntry') -> str:
-        return super()._name
+        return super()['_name']
 
     @name.setter
     def name(self: 'CfgEntry',
              name: str):
-        super()._name = name
+        super()['_name'] = name
 
     @property
     def value(self: 'CfgEntry') -> Any:
-        return super()._value
+        return super()['_value']
 
     @value.setter
     def value(self: 'CfgEntry',
               v: Any):
-        super()._value = v
+        super()['_value'] = v
+
+    @property
+    def description(self: 'CfgEntry') -> str:
+        return super()['_description']
+
+    @description.setter
+    def description(self: 'CfgEntry',
+                    description):
+        super()['_description'] = description
 
     @property
     def argDes(self: 'CfgEntry'):
-        return self._ad
+        return self['_ad']
 
     @argDes.setter
     def argDes(self: 'CfgEntry',
               ad: ArgDescriptor):
-        super()._ad = ad
+        super()['_ad'] = ad
 
     @property
     def flags(self: 'CfgEntry') -> int:
-        return super()._flags
+        return super()['_flags']
 
     @flags.setter
     def flags(self: 'CfgEntry',
               flags: int):
-        super()._flags = flags
+        super()['_flags'] = flags
 
     @property
     def admin(self: 'CfgEntry'):
-        return super()._admin
+        return super()['_admin']
 
     @admin.setter
     def admin(self: 'CfgEntry',
               admin: CfgAdmin):
-        super()._admin = admin
+        super()['_admin'] = admin
 
 
-class Configuration(object):
+class Configuration():
     """
     classdocs TBA
     """
@@ -308,30 +434,30 @@ class Configuration(object):
         """
 
         self._cfg: Dict[str, CfgEntry] = {}
-        # Gives default values for critical configuration that may not be
-        # specified elsewhere
+        # Gives default values for critical configuration entries that may not
+        # be specified elsewhere
         default_cfg = ((debug, False), (profile, False), (noupdate, False),
                        (nologging, False), (noargs, False), (noconfig, True),
-                       (cmdargs, None), (cmdfile, None), (version, 0.1),
+                       (cmdargs, None), (cmdfile, None), (version, '0.1'),
                        (release, '0.1.0'), (verbose, 0), (uac, None),
                        (test, None))
+        default_admin = CfgAdmin(overideable=True)
         for k, v in default_cfg:
             if k not in self._cfg:
                 self._cfg[k] = CfgEntry(k,
-                                        v)
+                                        v,
+                                        default_admin)
 
-        # Load the master preliminary configuration
+        # Load the master preliminary configuration - All the work is done
+        # within the loaded module as a result of importing it so we don't need
+        # to use anything from it.
+        print(sys.path)
+        import gvConfig.master
+        gvConfig.master.Master()()  # Load all the disk based configuration
 
-        # Add the application level initialization to the configuration
-#        for c in init:
-#            self.setMember(c)
-
-        # Load up and merge the configuration file for this run
-        # It cannot be done earlier because its' location may be specified on
-        # the command line
-        #TODO: Invoke the loading of the configuration files
-
-        # Get the command line arguments if supported by this application
+        # Get the command line arguments if supported by this application.
+        # By this time we will know whether the application supports command
+        # line arguments.
 
         if not self._cfg.get(noargs):
             self._cfg.update(_a().Parse())
@@ -356,13 +482,13 @@ class Configuration(object):
             entry: Mapping[str, Any]) -> None:
         """
         Adds the contents of a Mapping to the configuration. The values are
-        converted to CfgEntries.
+        converted to CfgEntries if necessary.
         """
         for k, v in entry:
             if self._cfg.get(k) is None:
                 raise(KeyError,
                       f'{k} is already in configuration - cannot add')
-            self._cfg[k] = CfgEntry(v)
+            self._cfg[k] = CfgEntry(v) if not isinstance(v, CfgEntry) else v
 
     def delete(self: 'Configuration',
                entry: CfgEntry):
@@ -386,37 +512,4 @@ class Configuration(object):
 
     def len(self) -> int:
         return len(self._cfg)
-
-    def _loadConfig(self,
-                    cfg: List[str]) -> None:
-        """
-        Load the configuration data from disk
-
-        :param List[str] cfg: A list containing the paths of the configuration
-                              data files to be loaded.
-        :returns:             Nothing. Everything is done as side-effects.
-        """
-
-        final_file = {}  # The consolidated configuration data
-        for file in cfg:
-            with open(file, 'r') as f:
-                temp_file = self._cj.load(f)
-                for ent in temp_file:  # Check for existing keys
-                    #TODO: Handle updating of existing keys
-                    # if not ent.key() in self._cfg or ent.key() in final_file:
-                    final_file.update(ent)
-        self._cfg.update(final_file)
-
-    def __call__(self) -> Dict[str, CfgEntry]:
-        """
-        The configuration file resides in a platform specific location and can
-        reside in a different place for testing so that test versions of the
-        file can be used when testing. The name of the configuration file
-        is passed as an argument to main(). For testing, the name of the
-        testing file can be specified on the command line when the test is
-        invoked.
-        """
 #TODO: Load configuration data from file
-
-        # Return standard configuration augmented by the command line arguments
-        return self._cfg
