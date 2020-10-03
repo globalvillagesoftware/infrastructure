@@ -1,4 +1,4 @@
 # Infrastructure
 Contains _Python_ libraries that support all **Global Village** activities.
 
-[All about the **Global Village**(https://github.com/globalvillagesoftware/wiki/home)
+[All about the **Global Village**(https://github.com/globalvillagesoftware/wiki/Home)
